@@ -349,6 +349,12 @@ def eval_train_dev(model):
     eval_acc = evaluate(model, dev_exs)
     return [train_acc, eval_acc]
 
+# Tester plusieurs valeurs de régularisation
+for reg_lambda in [0.0, 0.001, 0.01, 0.05, 0.1]:
+    print(f"\n=== reg_lambda = {reg_lambda} ===")
+    lr_model = train_model('unigram', 'LogisticRegression', train_exs, reg_lambda=reg_lambda)
+    eval_train_dev(lr_model)
+
 """### Évaluation du modèle avec une représentation unigramme Bag-of-Words"""
 
 # Évaluer la régression logistique avec des attributs unigrammes
